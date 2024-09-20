@@ -17,6 +17,7 @@ PAGE_ICON = ":wave:"
 NAME = "Basile Rommes"
 DESCRIPTION = "Data Scientist, MSc. Bioinformatics"
 EMAIL = "basilerommes@hotmail.com"
+LOCATION = "Stockholm, Sweden"
 SOCIAL_MEDIA = {
     "LinkedIn": "https://www.linkedin.com/in/basile-rommes/",
     "GitHub": "https://github.com/romba050",
@@ -55,6 +56,7 @@ with col2:
         mime="application/octet-stream",
     )
     st.write("📫", EMAIL)
+    st.write("📍", LOCATION)
 
 
 # --- SOCIAL LINKS ---
