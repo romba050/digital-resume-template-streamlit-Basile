@@ -23,7 +23,7 @@ SOCIAL_MEDIA = {
     "GitHub": "https://github.com/romba050",
 }
 PROJECTS = {
-    "👁️ : Blood Vessel Segmentation Master Thesis - Leveraging DNN and Bayesian Modeling to find blood vessels": "https://github.com/romba050/MFN_RBV_segmentation",
+    "👁️ Blood Vessel Segmentation Master Thesis - Leveraging DNN and Bayesian Modeling to find blood vessels": "https://github.com/romba050/MFN_RBV_segmentation",
     "🧬 Protein Superpositioning - Using Bayesian Inference to position protein strctures over each other": "https://github.com/romba050/Protein_Superpositioning_using_Bayesian_Inference",
     "🩻 Computer Tomography - Jupyter Notebook on how to use Fourrier Transform to calculate a CT": "https://nbviewer.org/github/romba050/computer_tomography/blob/master/ex3.ipynb",
     "🎵 Spotle Assist Project - The smart assistant to the Spotle artist guessing game": "https://spotle.streamlit.app/",
@@ -70,6 +70,13 @@ st.write("""
 Data Scientist with Master's Degree in Bioinformatics and focus on machine learning, computer vision, structural bioinformatics and data visualization. 4 years of professional experience in Data Management and Data Harmonisation. Wide area of expertise including data analysis, WebDev and task automation.
 """
 )
+
+# --- Projects & Accomplishments ---
+st.write('\n')
+st.subheader("Projects & Accomplishments")
+st.write("---")
+for project, link in PROJECTS.items():
+    st.write(f"[{project}]({link})")
 
 
 # --- EXPERIENCE & QUALIFICATIONS ---
@@ -128,10 +135,3 @@ st.write(
 - ► Teaching Master of Data Science Course in Python and R Programming
 """
 )
-
-# --- Projects & Accomplishments ---
-st.write('\n')
-st.subheader("Projects & Accomplishments")
-st.write("---")
-for project, link in PROJECTS.items():
-    st.write(f"[{project}]({link})")
