@@ -49,3 +49,8 @@ Love my content and want to show appreciation? Why not [buy me a coffee](https:/
 ## Feedback
 Got some thoughts or suggestions? Don't hesitate to reach out to me at contact@pythonandvba.com. I'd love to hear from you! 💡
 ![Logo](https://www.pythonandvba.com/banner-img)
+
+## Hosting on e.g. Render:
+https://www.youtube.com/watch?v=4SO3CUWPYf0
+pip install -r requirements.txt
+streamlit run app.py
