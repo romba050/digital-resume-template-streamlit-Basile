@@ -26,9 +26,9 @@ PROJECTS = {
     "👁️ Blood Vessel Segmentation Master Thesis - Leveraging DNN and Bayesian Modeling to find blood vessels": "https://github.com/romba050/MFN_RBV_segmentation",
     "🧬 Protein Superpositioning - Using Bayesian Inference to position protein structures over each other": "https://github.com/romba050/Protein_Superpositioning_using_Bayesian_Inference",
     "🩻 Computer Tomography - Jupyter Notebook on how to use Fourrier Transform to calculate a CT": "https://nbviewer.org/github/romba050/computer_tomography/blob/master/ex3.ipynb",
-    "🎵 Spotle Assist Project - The smart assistant to the Spotle artist guessing game": "https://basile-rommes/spotle/", #"https://spotle.streamlit.app/",
-    "📊 NEAR Data Request - Plan your data application to conduct Aging Research": "https://basile-rommes/near-data-request/", # "https://near-data-request.streamlit.app/",
-    "📊 Swedish Cake Day - Find out which cake is celebrated today in Sweden, the country of pastries": "https://basile-rommes/whatcakeday/", #"https://whatcakeday.streamlit.app/",
+    "🎵 Spotle Assist Project - The smart assistant to the Spotle artist guessing game": "https://basile-rommes.com/spotle/", # "https://spotle.streamlit.app/",
+    "📊 NEAR Data Request - Plan your data application to conduct Aging Research": "https://basile-rommes.com/near-data-request/", # "https://near-data-request.streamlit.app/",
+    "📊 Swedish Cake Day - Find out which cake is celebrated today in Sweden, the country of pastries": "https://basile-rommes.com/cake/", # "https://whatcakeday.streamlit.app/",
 }
 
 st.set_page_config(page_title=PAGE_TITLE, page_icon=PAGE_ICON)
