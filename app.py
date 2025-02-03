@@ -28,7 +28,8 @@ PROJECTS = {
     "🩻 Computer Tomography - Jupyter Notebook on how to use Fourrier Transform to calculate a CT": "https://nbviewer.org/github/romba050/computer_tomography/blob/master/ex3.ipynb",
     "🎵 Spotle Assist Project - The smart assistant to the Spotle artist guessing game": "https://basile-rommes.com/spotle/", # "https://spotle.streamlit.app/",
     "📊 NEAR Data Request - Plan your data application to conduct Aging Research": "https://basile-rommes.com/near-data-request/", # "https://near-data-request.streamlit.app/",
-    "📊 Swedish Cake Day - Find out which cake is celebrated today in Sweden, the country of pastries": "https://basile-rommes.com/cake/", # "https://whatcakeday.streamlit.app/",
+    "🍰 Swedish Cake Day - Find out which cake is celebrated today in Sweden, the country of pastries": "https://basile-rommes.com/cake/", # "https://whatcakeday.streamlit.app/",
+    "🤖 AI Art Turing Test - Test your ability to distinguish AI generated images from human art": "https://basile-rommes.com/ai-art-quiz/",
 }
 
 st.set_page_config(page_title=PAGE_TITLE, page_icon=PAGE_ICON)
@@ -83,26 +84,28 @@ for project, link in PROJECTS.items():
 # --- EXPERIENCE & QUALIFICATIONS ---
 st.write('\n')
 st.subheader("Experience & Qualifications")
+st.write("---")
 st.write(
 """
-- * 4 years experience in clinical data management
-- * Strong hands on experience and knowledge in Python and R
-- * Focus on Bioinformatics in Protein Structures and Medical Image Analysis 
-- * Good understanding of statistical principles and Machine Learning and their respective applications
-- * Experience in WebDev using PHP, Wordpress or Python Libraries
-""" #- ✔️ Excellent team-player and displaying strong sense of initiative on tasks
+► 4 years experience in clinical data management\n
+► Strong hands on experience and knowledge in Python and R\n
+► Focus on Bioinformatics in Protein Structures and Medical Image Analysis\n
+► Good understanding of statistical principles and Machine Learning and their respective applications\n
+► Experience in WebDev using PHP, Wordpress or Python Libraries\n
+""" #- ► Excellent team-player and displaying strong sense of initiative on tasks
 )
 
 
 # --- SKILLS ---
 st.write('\n')
 st.subheader("Hard Skills")
+st.write("---")
 st.write(
     """
-- 👩‍💻 Programming: Python (Scikit-learn, Pandas), R, Unix/Bash, C++, SQL, PHP
-- 📊 Data Visulization: Matplotlib, Plotly, Streamlit
-- 📚 Modeling: Convolutional Neural Networks, Bayesian Maximum a posteriori estimation, Logistic regression, Linear regression, Decision trees
-- 🗄️ Databases and Cloud: MySQL, MariaDB, AWS
+👨🏻‍💻 Programming: Python (Scikit-learn, Pandas), R, Unix/Bash, C++, SQL, PHP\n
+📊 Data Visulization: Matplotlib, Plotly, Streamlit\n
+📚 Modeling: Convolutional Neural Networks, Bayesian Maximum a posteriori estimation, Logistic regression, Linear regression, Decision trees\n
+🗄️ Databases and Cloud: MySQL, MariaDB, AWS\n
 """
 )
 
@@ -113,26 +116,26 @@ st.subheader("Work History")
 st.write("---")
 
 # --- JOB 1
-st.write("🚧", "**Software Developer | Karolinska Institutet**")
+st.write("👨🏻‍💻", "**Software Developer | Karolinska Institutet**")
 st.write("09/2022 - 09/2024")
 st.write(
     """
-- ► Data harmonization for Epidemiological Research
-- ► Maintenance of the [NEAR database](https://neardb.near-aging.se/) and Website
-- ► Building pipelines in R and python,
+- ► Data harmonization for Epidemiological Research\n
+- ► Maintenance of the [NEAR database](https://neardb.near-aging.se/) and Website\n
+- ► Building pipelines in R and python,\n
 - ► WebDev in PHP and Wordpress
 """
 )
 
 # --- JOB 2
 st.write('\n')
-st.write("🚧", "**Research and Development Specialist| Luxembourg Centre for Systems Biomedicine**")
+st.write("👨🏻‍💻", "**Research and Development Specialist| Luxembourg Centre for Systems Biomedicine**")
 st.write("09/2020 - 08/2022")
 st.write(
     """
-- ► Data management and curation within the european BIOMAP and the luxembourgish CON-VINCE projects
-- ► Using RedCAP to capture medical data
-- ► Building re-usable data pipelines in KNIME
+- ► Data management and curation within the european BIOMAP and the luxembourgish CON-VINCE projects\n
+- ► Using RedCAP to capture medical data\n
+- ► Building re-usable data pipelines in KNIME\n
 - ► Teaching Master of Data Science Course in Python and R Programming
 """
 )
