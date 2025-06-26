@@ -7,7 +7,7 @@ from PIL import Image
 # --- PATH SETTINGS ---
 current_dir = Path(__file__).parent if "__file__" in locals() else Path.cwd()
 css_file = current_dir / "styles" / "main.css"
-resume_file = current_dir / "assets" / "CV_Latex_2024-10-11.pdf"
+resume_file = current_dir / "assets" / "CV_Basile_Short_2025-06-16.pdf"
 profile_pic = current_dir / "assets" / "profile-pic.png"
 
 
@@ -23,13 +23,13 @@ SOCIAL_MEDIA = {
     "GitHub": "https://github.com/romba050",
 }
 PROJECTS = {
-    "👁️ Blood Vessel Segmentation Master Thesis - Leveraging DNN and Bayesian Modeling to find blood vessels": "https://github.com/romba050/MFN_RBV_segmentation",
-    "🧬 Protein Superpositioning - Using Bayesian Inference to position protein structures over each other": "https://github.com/romba050/Protein_Superpositioning_using_Bayesian_Inference",
-    "🩻 Computer Tomography - Jupyter Notebook on how to use Fourrier Transform to calculate a CT": "https://nbviewer.org/github/romba050/computer_tomography/blob/master/ex3.ipynb",
-    "🎵 Spotle Assist Project - The smart assistant to the Spotle artist guessing game": "https://basile-rommes.com/spotle/", # "https://spotle.streamlit.app/",
-    "📊 NEAR Data Request - Plan your data application to conduct Aging Research": "https://basile-rommes.com/near-data-request/", # "https://near-data-request.streamlit.app/",
-    "🍰 Swedish Cake Day - Find out which cake is celebrated today in Sweden, the country of pastries": "https://basile-rommes.com/cake/", # "https://whatcakeday.streamlit.app/",
-    "🤖 AI Art Turing Test - Test your ability to distinguish AI generated images from human art": "https://basile-rommes.com/ai-art-quiz/",
+    "👁️ Blood Vessel Segmentation Master Thesis – Leveraging DNN and Bayesian Modelling to find blood vessels": "https://github.com/romba050/MFN_RBV_segmentation",
+    "🧬 Protein Superpositioning – Using Bayesian Inference to position protein structures over each other": "https://github.com/romba050/Protein_Superpositioning_using_Bayesian_Inference",
+    "🩻 Computer Tomography – Jupyter Notebook on how to use Fourier Transform to calculate a CT": "https://nbviewer.org/github/romba050/computer_tomography/blob/master/ex3.ipynb",
+    "🎵 Spotle Assist Project – The smart assistant to the Spotle artist guessing game": "https://basile-rommes.com/spotle/", # "https://spotle.streamlit.app/",
+    "📊 NEAR Data Request – Plan your data application to conduct ageing research": "https://basile-rommes.com/near-data-request/", # "https://near-data-request.streamlit.app/",
+    "🍰 Swedish Cake Day – Find out which cake is celebrated today in Sweden, the country of pastries": "https://basile-rommes.com/cake/", # "https://whatcakeday.streamlit.app/",
+    "🤖 AI Art Turing Test – Test your ability to distinguish AI-generated images from human art": "https://basile-rommes.com/ai-art-quiz/",
 }
 
 st.set_page_config(page_title=PAGE_TITLE, page_icon=PAGE_ICON)
@@ -69,13 +69,13 @@ for index, (platform, link) in enumerate(SOCIAL_MEDIA.items()):
 
 # --- About ---
 st.write("""
-Data Scientist with Master's Degree in Bioinformatics and focus on machine learning, computer vision, structural bioinformatics and data visualization. 4 years of professional experience in Data Management and Data Harmonisation. Wide area of expertise including data analysis, WebDev and task automation.
+Data scientist with a master's degree in bioinformatics and a focus on machine learning, computer vision, structural bioinformatics and data visualisation. 4 years of professional experience in data management and data harmonisation. Wide area of expertise, including data analysis, web development and task automation.
 """
 )
 
 # --- Projects & Accomplishments ---
 st.write('\n')
-st.subheader("Projects & Accomplishments")
+st.subheader("Projects & WebApps")
 st.write("---")
 for project, link in PROJECTS.items():
     st.write(f"[{project}]({link})")
@@ -87,12 +87,12 @@ st.subheader("Experience & Qualifications")
 st.write("---")
 st.write(
 """
-► 4 years experience in clinical data management\n
-► Strong hands on experience and knowledge in Python and R\n
-► Focus on Bioinformatics in Protein Structures and Medical Image Analysis\n
-► Good understanding of statistical principles and Machine Learning and their respective applications\n
-► Experience in WebDev using PHP, Wordpress or Python Libraries\n
-""" #- ► Excellent team-player and displaying strong sense of initiative on tasks
+► 4 years of experience in clinical data management\n
+► Strong hands-on experience and knowledge in Python and R\n
+► Focus on bioinformatics in protein structures and medical image analysis\n
+► Good understanding of statistical principles and machine learning and their respective applications\n
+► Experience in WebDev using PHP, WordPress or Python libraries\n
+""" #- ► Excellent team-player and displaying strong sense of initiative on task\n
 )
 
 
@@ -103,9 +103,9 @@ st.write("---")
 st.write(
     """
 👨🏻‍💻 Programming: Python (Scikit-learn, Pandas), R, Unix/Bash, C++, SQL, PHP\n
-📊 Data Visulization: Matplotlib, Plotly, Streamlit\n
-📚 Modeling: Convolutional Neural Networks, Bayesian Maximum a posteriori estimation, Logistic regression, Linear regression, Decision trees\n
-🗄️ Databases and Cloud: MySQL, MariaDB, AWS\n
+📊 Data Visualisation: Matplotlib, Plotly, Streamlit\n
+📚 Modeling: Convolutional Neural Networks, Bayesian Maximum a posteriori estimation, logistic regression, linear regression, decision trees\n
+🗄️ Databases and Cloud: MySQL, MariaDB, AWS, InfluxDB, Grafana\n
 """
 )
 
@@ -120,22 +120,22 @@ st.write("👨🏻‍💻", "**Software Developer | Karolinska Institutet**")
 st.write("09/2022 - 09/2024")
 st.write(
     """
-- ► Data harmonization for Epidemiological Research\n
+- ► Data harmonisation for epidemiological research\n
 - ► Maintenance of the [NEAR database](https://neardb.near-aging.se/) and Website\n
-- ► Building pipelines in R and python,\n
-- ► WebDev in PHP and Wordpress
+- ► Building pipelines in R and Python,\n
+- ► WebDev in PHP and WordPress
 """
 )
 
 # --- JOB 2
 st.write('\n')
-st.write("👨🏻‍💻", "**Research and Development Specialist| Luxembourg Centre for Systems Biomedicine**")
+st.write("👨🏻‍💻", "**Research and Development Specialist | Luxembourg Centre for Systems Biomedicine**")
 st.write("09/2020 - 08/2022")
 st.write(
     """
 - ► Data management and curation within the european BIOMAP and the luxembourgish CON-VINCE projects\n
 - ► Using RedCAP to capture medical data\n
 - ► Building re-usable data pipelines in KNIME\n
-- ► Teaching Master of Data Science Course in Python and R Programming
+- ► Teaching in the Master of Data Science Course "Python and R Programming"
 """
 )
