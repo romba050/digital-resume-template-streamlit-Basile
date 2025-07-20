@@ -23,7 +23,8 @@ SOCIAL_MEDIA = {
     "GitHub": "https://github.com/romba050",
 }
 PROJECTS = {
-    "👁️ Blood Vessel Segmentation Master Thesis – Leveraging DNN and Bayesian Modelling to find blood vessels": "https://github.com/romba050/MFN_RBV_segmentation",
+    "👁️ Blood Vessel Segmentation (Master Thesis) – Leveraging Neural Networks and Probability Theory to find blood vessels": "https://github.com/romba050/MFN_RBV_segmentation",
+    "👁️ Blood Vessel Segmentation Webapp – Interactive webapp for vessel segmentation": "https://basile-rommes.com/BVS",
     "🧬 Protein Superpositioning – Using Bayesian Inference to position protein structures over each other": "https://github.com/romba050/Protein_Superpositioning_using_Bayesian_Inference",
     "🩻 Computer Tomography – Jupyter Notebook on how to use Fourier Transform to calculate a CT": "https://nbviewer.org/github/romba050/computer_tomography/blob/master/ex3.ipynb",
     "🎵 Spotle Assist Project – The smart assistant to the Spotle artist guessing game": "https://basile-rommes.com/spotle/", # "https://spotle.streamlit.app/",
@@ -46,17 +47,21 @@ profile_pic = Image.open(profile_pic)
 # --- HERO SECTION ---
 col1, col2 = st.columns(2, gap="small")
 with col1:
-    st.image(profile_pic, width=230)
+    # Create columns to position the image between left and center
+    _, center_col, _ = st.columns([0.5, 2, 1.5])
+    with center_col:
+        st.image(profile_pic, width=230)
 
 with col2:
     st.title(NAME)
     st.write(DESCRIPTION)
-    st.download_button(
-        label=" 📄 Download Resume",
-        data=PDFbyte,
-        file_name=resume_file.name,
-        mime="application/octet-stream",
-    )
+    ## Removed CV because it is too much work to change all the time
+    # st.download_button(
+    #     label=" 📄 Download Resume",
+    #     data=PDFbyte,
+    #     file_name=resume_file.name,
+    #     mime="application/octet-stream",
+    # )
     st.write("📫", EMAIL)
     st.write("📍", LOCATION)
 
@@ -65,7 +70,15 @@ with col2:
 st.write('\n')
 cols = st.columns(len(SOCIAL_MEDIA))
 for index, (platform, link) in enumerate(SOCIAL_MEDIA.items()):
-    cols[index].link_button(f"{platform}", url=f"{link}")
+    with cols[index]:
+        st.markdown(f'<a href="{link}" target="_blank" style="text-decoration: none;"><button style="background-color: #FFD700; color: black; border: none; padding: 12px; border-radius: 4px; cursor: pointer; width: 100%; font-weight: bold;">{platform}</button></a>', unsafe_allow_html=True)
+# cols = st.columns(len(SOCIAL_MEDIA))
+# for index, (platform, link) in enumerate(SOCIAL_MEDIA.items()):
+#     with cols[index]:
+#         container = st.container()
+#         with container:
+#             st.markdown(f'<div style="display: flex; justify-content: center;"><a href="{link}" target="_blank" style="text-decoration: none;"><button style="background-color: #ff4b4b; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">{platform}</button></a></div>', unsafe_allow_html=True)
+
 
 # --- About ---
 st.write("""
@@ -75,7 +88,7 @@ Data scientist with a master's degree in bioinformatics and a focus on machine l
 
 # --- Projects & Accomplishments ---
 st.write('\n')
-st.subheader("Projects & WebApps")
+st.markdown('<h3 style="color: #FFD700;">Projects & WebApps</h3>', unsafe_allow_html=True)
 st.write("---")
 for project, link in PROJECTS.items():
     st.write(f"[{project}]({link})")
@@ -83,7 +96,7 @@ for project, link in PROJECTS.items():
 
 # --- EXPERIENCE & QUALIFICATIONS ---
 st.write('\n')
-st.subheader("Experience & Qualifications")
+st.markdown('<h3 style="color: #FFD700;">Experience & Qualifications</h3>', unsafe_allow_html=True)
 st.write("---")
 st.write(
 """
@@ -98,7 +111,7 @@ st.write(
 
 # --- SKILLS ---
 st.write('\n')
-st.subheader("Hard Skills")
+st.markdown('<h3 style="color: #FFD700;">Hard Skills</h3>', unsafe_allow_html=True)
 st.write("---")
 st.write(
     """
@@ -110,9 +123,9 @@ st.write(
 )
 
 
-# --- WORK HISTORY ---
+# --- WORK Experience ---
 st.write('\n')
-st.subheader("Work History")
+st.markdown('<h3 style="color: #FFD700;">Work Experience</h3>', unsafe_allow_html=True)
 st.write("---")
 
 # --- JOB 1
