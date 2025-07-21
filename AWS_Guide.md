@@ -90,24 +90,79 @@ systemctl status frontend # always shows (code=exited, status=203/EXEC) for some
 
 ## Guide: setting up an additional page on [basile-rommes.com](http://basile-rommes.com), without putting the code into digital-resume/app.py
 
+WARNING: the text below is much more convoluted then necessary although might cover some error cases. Instead, jump to section:
+*AWS Host New Webapp* for a concise guide.
+
+
+
+Step 1: have digital-resume updated on github, with a link to your project (URL will be basile-rommes/project-name but the project-name can be different (shorter) than the github project name and it MUST BE LOWERCASE)
+
+Step 2: Have your project uploaded on github
+
 ```bash
+cd basile-rommes
+rm -fr digital-resume # no worries, your website will still be up and running in it's docker container during this process
+git clone https://github.com/romba050/digital-resume-template-streamlit-Basile.git digital-resume
 git clone https://github.com/your-git-account/you-git-url.git project_name
 ```
 
 $(~/ubuntu/reverseproxy) OR ubuntu@ip-172-31-37-139:~/basile-rommes/nginx$
 ```bash
-vim nginx.conf or sudo nano default.conf 
+cd nginx/
+vim default.conf # or: nano default.conf 
 ```
 
 -> add upstream project_name {…}
 
 -> add location /project_name {…}
 
+```bash
+    location /NAME/ {
+        rewrite ^/NAME(/.*)$ $1 break;
+        proxy_pass http://NAME:8506;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        # WebSocket support for Streamlit
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+    }
+```
+
+Then:
+
+```bash
+docker restart nginx # where nginx is the name of my nginx docker, you can check what your naem is with docker ps
+```
+
+
+
 $(~/ubuntu/reverseproxy) OR ubuntu@ip-172-31-37-139:~/basile-rommes/nginx$
 
 ```bash
-docker build -t reverseproxy . --no-cache OR docker build -t nginx . --no-cache
+# docker build -t reverseproxy . --no-cache
+docker build -t nginx . --no-cache
+time docker build --progress=plain -t project-name ./project-name # this can take a while
 ```
+
+```bash
+cd ../basile-rommes
+# add to docker-commands.sh
+docker run -dit --name project-name --network basile-rommes-network -p 850<i>:850<i> project-name
+# then
+sh docker-commands.sh  # this took 39s last time
+```
+
+# ## now we get to this problem:
+
+How can I rerun a docker image that is already running? 
+
+https://claude.ai/chat/fee95d5f-605d-4bcb-a9bb-b406be1a1ec3
+
+
 
 \# stop old running docker processes:
 
@@ -227,7 +282,7 @@ docker run -d --name nginx --network streamlit-network -p 80:80 nginx_proxy
 
 
 
-## When one of the apps is not running
+## When one of the apps is not running !!!!!!!! 
 
 ```bash
 docker ps -a # see all containrrs
@@ -253,7 +308,10 @@ docker ps | grep nginx
 
 Stop the container then remove the stopped container using its ID or name and flag -f 
 ```bash
+# warning, this does disable your webpage until it is back up
 docker rm -f <container_id_or_name>
+# eg.g
+docker rm -f nginx
 ```
 
 ```bash
@@ -285,21 +343,15 @@ cp digital-resume-old/Dockerfile digital-resume/
 ```
 
 ```bash
-docker stop digital-resume
-docker rm digital-resume
-```
-
-```bash
-# docker build -t digital-resume .
-```
-
-```bash
-# docker run -d --name digital-resume digital-resume
+docker stop digital-resume && docker rm digital-resume
+docker ps | grep "digital" # if nothing returns, the death is confirmed
 ```
 
 
 ```bash
-docker build --progress=plain -t digital-resume ./digital-resume
+cp digital-resume-old/Dockerfile digital-resume/
+
+docker build --progress=plain -t digital-resume ./digital-resume # this will take ca. 30s, grab a tea
 
 docker run -dit --name digital-resume --network basile-rommes-network -p 8501:8501 digital-resume
 
@@ -328,3 +380,100 @@ YOU FORGOT TO COPY NEW DOCKERFILE!
 ```bash
 cp digital-resume-old/Dockerfile digital-resume
 ```
+
+
+
+# AWS Host New Webapp
+
+Log into EC2 server:
+
+```bash
+sudo su  # attention: this might sabotage you later
+cd basile-rommes
+
+su - ubuntu  # you need to switch to a regular user so that you can have access to your ssh keys otherwise you will get this error when git clone:
+# Cloning into 'ai-art-quiz'...
+# git@github.com: Permission denied (publickey).
+# fatal: Could not read from remote repository.
+# Please make sure you have the correct access rights
+# and the repository exists.
+
+sudo su  # go back to root so that you can edit files again
+```
+
+Clone the repository:
+
+```bash
+git clone <ssh git link> <name of webapp that corresponds to the url name you want to give it, e.g. ai-art-quiz>
+# e.g. git clone git@github.com:romba050/AI_ART_Turing_Test.git ai-art-quiz
+```
+
+Set up Docker configuration:
+
+```bash
+cp cake/Dockerfile ai-art-quiz
+nano ai-art-quiz/Dockerfile  # adjust port
+nano nginx/default.conf  # adjust reverse-proxy config file
+```
+
+Build and run Docker container:
+
+```bash
+docker build --progress=plain -t ai-art-quiz ./ai-art-quiz
+docker run -dit --name ai-art-quiz --network basile-rommes-network -p 8505:8505 ai-art-quiz
+
+# if the docker image is already running from a previous attempt, remove it first:
+docker rm -f ai-art-quiz
+
+# or check which docker images are running with:
+docker ps
+
+# to see also docker images that are not running:
+docker ps -a
+```
+
+For completeness sake, add lines to `docker-commands.sh`:
+
+```bash
+docker build --progress=plain -t ai-art-quiz ./ai-art-quiz
+# and later:
+docker run -dit --name ai-art-quiz --network basile-rommes-network -p 8505:8505 ai-art-quiz
+```
+
+Test the website by visiting: https://basile-rommes.com/ai-art-quiz/
+
+Configure systemd service for auto-restart:
+
+```bash
+vim /etc/systemd/system/nginx_proxy.service 
+# add line:
+ExecStartPost=sudo docker start ai-art-quiz
+```
+
+## Additional Docker Commands
+
+**NOTE:** This was not necessary last time, as nginx would automatically use the new docker image of ai-art-quiz
+
+Stop and remove container, then restart nginx:
+
+```bash
+# Stop the container then remove the stopped container using its ID or name and flag -f 
+docker rm -f <container_id_or_name>
+# e.g. docker rm -f nginx
+
+docker run -dit --name nginx --network basile-rommes-network -p 80:80 nginx_proxy
+```
+
+Connect to a docker container:
+
+```bash
+docker exec -it ai-art-quiz sh
+# Type exit or press Ctrl+D to exit the container's shell.
+```
+
+Copy files from docker container to host server:
+
+```bash
+docker cp container_name:/path/to/file /host/path
+```
+

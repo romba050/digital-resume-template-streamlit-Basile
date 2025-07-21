@@ -24,7 +24,7 @@ SOCIAL_MEDIA = {
 }
 PROJECTS = {
     "👁️ Blood Vessel Segmentation (Master Thesis) – Leveraging Neural Networks and Probability Theory to find blood vessels": "https://github.com/romba050/MFN_RBV_segmentation",
-    "👁️ Blood Vessel Segmentation Webapp – Interactive webapp for vessel segmentation": "https://basile-rommes.com/BVS",
+    "👁️ Blood Vessel Segmentation Webapp – Interactive webapp for vessel segmentation": "https://basile-rommes.com/bvs",
     "🧬 Protein Superpositioning – Using Bayesian Inference to position protein structures over each other": "https://github.com/romba050/Protein_Superpositioning_using_Bayesian_Inference",
     "🩻 Computer Tomography – Jupyter Notebook on how to use Fourier Transform to calculate a CT": "https://nbviewer.org/github/romba050/computer_tomography/blob/master/ex3.ipynb",
     "🎵 Spotle Assist Project – The smart assistant to the Spotle artist guessing game": "https://basile-rommes.com/spotle/", # "https://spotle.streamlit.app/",
