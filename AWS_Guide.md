@@ -321,7 +321,7 @@ docker run -dit --name nginx --network basile-rommes-network -p 80:80 nginx_prox
 ```
 
 
-# Situation: I changed only digital-resume/app.py. Here is how I implement the changes on the server
+# Situation: I changed ONLY digital-resume/app.py. Here is how I implement the changes on the server
 
 ```bash
 
@@ -343,7 +343,7 @@ cp digital-resume-old/Dockerfile digital-resume/
 ```
 
 ```bash
-docker stop digital-resume && docker rm digital-resume
+docker stop digital-resume && docker rm digital-resume # stop the running container and remove the image?
 docker ps | grep "digital" # if nothing returns, the death is confirmed
 ```
 
@@ -435,12 +435,20 @@ docker ps -a
 For completeness sake, add lines to `docker-commands.sh`:
 
 ```bash
-docker build --progress=plain -t ai-art-quiz ./ai-art-quiz
+docker build --progress=plain -t project_name ./project_name
 # and later:
-docker run -dit --name ai-art-quiz --network basile-rommes-network -p 8505:8505 ai-art-quiz
+docker run -dit --name project_name --network basile-rommes-network -p 8505:8505 project_name
 ```
 
 Test the website by visiting: https://basile-rommes.com/ai-art-quiz/
+
+or test the docker container with
+
+``` bash
+docker logs --tail 50 project_name
+```
+
+
 
 Configure systemd service for auto-restart:
 
@@ -449,6 +457,34 @@ vim /etc/systemd/system/nginx_proxy.service
 # add line:
 ExecStartPost=sudo docker start ai-art-quiz
 ```
+
+## Troubleshooting
+
+If you get error:
+```bash
+Page not found
+You have requested page /project-name, but no corresponding file was found in the app's pages/ directory. Running the app's main page.
+```
+Check the nginx docker container to see if the default.conf has actually been loaded:
+```bash
+docker exec nginx cat /etc/nginx/conf.d/default.conf
+```
+
+
+If you cannot find project-name in there:
+```bash
+docker stop nginx && docker rm nginx # stops the docker container and then removes the docker container
+docker rmi nginx # this removed the docker image. If you skip this, a new build will not work?
+docker build -t nginx_proxy ./nginx --no-cache
+docker run -dit --name nginx --network basile-rommes-network -p 80:80 nginx_proxy
+```
+Now 
+```bash
+docker exec nginx cat /etc/nginx/conf.d/default.conf
+```
+shows everything working properly.
+
+
 
 ## Additional Docker Commands
 
@@ -477,3 +513,15 @@ Copy files from docker container to host server:
 docker cp container_name:/path/to/file /host/path
 ```
 
+
+
+# [What is the difference between Load Balancer and Reverse Proxy?](https://serverfault.com/questions/127021/what-is-the-difference-between-load-balancer-and-reverse-proxy) - Stack Overflow
+
+Your confusion is reasonable - they are often the same thing. But not always. When you refer to a load balancer you are referring to a very specific thing - a server or device that balances inbound requests across two or more web servers to spread the load. A reverse proxy, however, typically has any number of features:
+
+1. load balancing: as discussed above
+2. caching: it can cache content from the web server(s) behind it and thereby reduce the load on the web server(s) and return some static content back to the requester without having to get the data from the web server(s)
+3. security: it can protect the web server(s) by preventing direct access from the internet; it might do this through simple means by just obfuscating the web server(s) or it may have some more active components that actually review inbound requests looking for malicious code
+4. SSL acceleration: when SSL is used; it may serve as a termination point for those SSL sessions so that the workload of dealing with the encryption is offloaded from the web server(s)
+
+I think this covers most of it but there are probably a few other features I've missed. Certainly it isn't uncommon to see a device or piece of software marketed as a load balancer/reverse proxy because the features are so commonly bundled together.
