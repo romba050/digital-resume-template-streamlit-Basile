@@ -8,14 +8,14 @@ from PIL import Image
 current_dir = Path(__file__).parent if "__file__" in locals() else Path.cwd()
 css_file = current_dir / "styles" / "main.css"
 resume_file = current_dir / "assets" / "CV_Short_Basile_Rommes_2025-07-02.pdf"
-profile_pic = current_dir / "assets" / "profile-pic.png"
+profile_pic = current_dir / "assets" / "profile-pic.png" # "profile-pic-spiral.png"
 
 
 # --- GENERAL SETTINGS ---
 PAGE_TITLE = "Digital CV | Basile Rommes"
 PAGE_ICON = ":wave:"
 NAME = "Basile Rommes"
-DESCRIPTION = "Data Scientist, MSc. Bioinformatics"
+DESCRIPTION = " MSc Bioinformatics"
 EMAIL = "basilerommes@hotmail.com"
 LOCATION = "Stockholm, Sweden"
 SOCIAL_MEDIA = {
@@ -26,9 +26,9 @@ PROJECTS = {
     "👁️ Blood Vessel Segmentation (Master Thesis) – Leveraging Neural Networks and Probability Theory to find blood vessels": "https://github.com/romba050/MFN_RBV_segmentation",
     "👁️ Blood Vessel Segmentation Webapp – Interactive webapp for vessel segmentation": "https://basile-rommes.com/bvs",
     "🧬 Protein Superpositioning – Using Bayesian Inference to position protein structures over each other": "https://github.com/romba050/Protein_Superpositioning_using_Bayesian_Inference",
-    "🩻 Computer Tomography – Jupyter Notebook on how to use Fourier Transform to calculate a CT": "https://nbviewer.org/github/romba050/computer_tomography/blob/master/ex3.ipynb",
+    #"🩻 Computer Tomography – Jupyter Notebook on how to use Fourier Transform to calculate a CT": "https://nbviewer.org/github/romba050/computer_tomography/blob/master/ex3.ipynb",
     "🎵 Spotle Assist Project – The smart assistant to the Spotle artist guessing game": "https://basile-rommes.com/spotle/", # "https://spotle.streamlit.app/",
-    "📊 NEAR Data Request – Plan your data application to conduct ageing research": "https://basile-rommes.com/near-data-request/", # "https://near-data-request.streamlit.app/",
+    "📊 NEAR Data Request Form – Plan your data application to conduct ageing research": "https://basile-rommes.com/near-data-request/", # "https://near-data-request.streamlit.app/",
     "🍰 Swedish Cake Day – Find out which cake is celebrated today in Sweden, the country of pastries": "https://basile-rommes.com/cake/", # "https://whatcakeday.streamlit.app/",
     "🤖 AI Art Turing Test – Test your ability to distinguish AI-generated images from human art": "https://basile-rommes.com/ai-art-quiz/",
 }
@@ -80,11 +80,11 @@ for index, (platform, link) in enumerate(SOCIAL_MEDIA.items()):
 #             st.markdown(f'<div style="display: flex; justify-content: center;"><a href="{link}" target="_blank" style="text-decoration: none;"><button style="background-color: #ff4b4b; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">{platform}</button></a></div>', unsafe_allow_html=True)
 
 
-# --- About ---
-st.write("""
-Data scientist with a master's degree in bioinformatics and a focus on machine learning, computer vision, structural bioinformatics and data visualisation. 4 years of professional experience in data management and data harmonisation. Wide area of expertise, including data analysis, web development and task automation.
-"""
-)
+# # --- About ---
+# st.write("""
+# Data scientist with a master's degree in bioinformatics and a focus on machine learning, computer vision, structural bioinformatics and data visualisation. 4 years of professional experience in data management and data harmonisation. Wide area of expertise, including data analysis, web development and task automation.
+# """
+# )
 
 # --- Projects & Accomplishments ---
 st.write('\n')
@@ -111,17 +111,18 @@ st.write(
 
 # --- SKILLS ---
 st.write('\n')
-st.markdown('<h3 style="color: #FFD700;">Hard Skills</h3>', unsafe_allow_html=True)
+st.markdown('<h3 style="color: #FFD700;">Skills</h3>', unsafe_allow_html=True)
 st.write("---")
 st.write(
     """
 👨🏻‍💻 Programming: Python (Scikit-learn, Pandas), R, Unix/Bash, C++, SQL, PHP\n
 📊 Data Visualisation: Matplotlib, Plotly, Streamlit\n
+🤖 Machine Learning: PyTorch, Keras\n
 📚 Modeling: Convolutional Neural Networks, Bayesian Maximum a posteriori estimation, logistic regression, linear regression, decision trees\n
-🗄️ Databases and Cloud: MySQL, MariaDB, AWS, InfluxDB, Grafana\n
+🗄️ Databases and Cloud: MySQL, MariaDB, AWS, Docker, InfluxDB, Grafana\n
 """
 )
-
+# # DevOps: Git, CI/CD
 
 # --- WORK Experience ---
 st.write('\n')

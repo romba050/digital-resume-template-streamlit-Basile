@@ -11,11 +11,6 @@ Find his:
 ## Live Demo
 👉 **https://resume.pythonandvba.com/**
 
-## Screenshots
-![Demo1](./assets/demo1.png?raw=true "Demo1")
-![Demo2](./assets/demo2.png?raw=true "Demo2")
-![Demo3](./assets/demo3.png?raw=true "Demo3")
-
 ## Video Tutorial
 [![YouTube Video](https://img.youtube.com/vi/BXAeMICmUSQ/0.jpg)](https://youtu.be/BXAeMICmUSQ)
 
