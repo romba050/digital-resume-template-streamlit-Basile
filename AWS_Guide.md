@@ -321,7 +321,7 @@ docker run -dit --name nginx --network basile-rommes-network -p 80:80 nginx_prox
 ```
 
 
-# Situation: I changed ONLY digital-resume/app.py. Here is how I implement the changes on the server
+# Situation: I changed ONLY digital-resume. Here is how I implement the changes on the server
 
 ```bash
 

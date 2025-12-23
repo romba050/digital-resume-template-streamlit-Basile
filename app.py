@@ -8,8 +8,8 @@ from PIL import Image
 current_dir = Path(__file__).parent if "__file__" in locals() else Path.cwd()
 css_file = current_dir / "styles" / "main.css"
 resume_file = current_dir / "assets" / "CV_Short_Basile_Rommes_2025-07-02.pdf"
-profile_pic = current_dir / "assets" / "profile-pic.png" # "profile-pic-spiral.png"
-
+profile_pic = current_dir / "assets" / "profile-pic-2_2025-12-19.png" # "profile-pic-spiral.png"
+# profile_pic = current_dir / "assets" / "profile-pic_2024-10-03.png"
 
 # --- GENERAL SETTINGS ---
 PAGE_TITLE = "Digital CV | Basile Rommes"
@@ -48,9 +48,12 @@ profile_pic = Image.open(profile_pic)
 col1, col2 = st.columns(2, gap="small")
 with col1:
     # Create columns to position the image between left and center
-    _, center_col, _ = st.columns([0.5, 2, 1.5])
+    _, center_col, _ = st.columns([0.5, 2, 0.5])
     with center_col:
-        st.image(profile_pic, width=230)
+        st.image(profile_pic, use_column_width=True)
+        # get original width with:
+        # sips -g pixelWidth -g pixelHeight "assets/profile-pic_2024-10-03.png"
+
 
 with col2:
     st.title(NAME)
