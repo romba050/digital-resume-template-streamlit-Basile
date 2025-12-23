@@ -7,6 +7,7 @@
 https://aws.amazon.com/
 
 Top right: Sign in to the console
+Use Google email and Authenticator app to sign in.
 
 After sign in, make sure to select on the top right
 
