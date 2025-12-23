@@ -349,17 +349,20 @@ docker ps | grep "digital" # if nothing returns, the death is confirmed
 
 
 ```bash
-cp digital-resume-old/Dockerfile digital-resume/
-
 docker build --progress=plain -t digital-resume ./digital-resume # this will take ca. 30s, grab a tea
 
 docker run -dit --name digital-resume --network basile-rommes-network -p 8501:8501 digital-resume
-
-docker run -dit --name nginx --network basile-rommes-network -p 80:80 nginx_proxy
 ```
 
+Now you should be done! Test the website!
 
+## Troubleshooting
+If you want/need to restart nging as well do this:
+```
+docker run -dit --name nginx --network basile-rommes-network -p 80:80 nginx_proxy # Necessary? This should still be running?
+```
 
+If you are having trouble removing the old docker:
 ```bash
 docker ps
 
@@ -370,17 +373,17 @@ docker rm -f digital-resume # from now on website is no longer online?
 docker run -dit --name digital-resume --network basile-rommes-network -p 8501:8501 digital-resume
 ```
 
-
+Problem:
 FAIL - got Bad gateway on website for a short while, then it restarted nginx and displayed the old website somehow, even though I deleted the old docker and the files it should have used?
 
 Maybe I deleted the container but not the image? 
 
+Solution:
 YOU FORGOT TO COPY NEW DOCKERFILE!
 
 ```bash
 cp digital-resume-old/Dockerfile digital-resume
 ```
-
 
 
 # AWS Host New Webapp
