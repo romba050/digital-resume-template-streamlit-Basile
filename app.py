@@ -23,14 +23,15 @@ SOCIAL_MEDIA = {
     "GitHub": "https://github.com/romba050",
 }
 PROJECTS = {
-    "👁️ Blood Vessel Segmentation (Master Thesis) – Leveraging Neural Networks and Probability Theory to find blood vessels": "https://github.com/romba050/MFN_RBV_segmentation",
-    "👁️ Blood Vessel Segmentation Webapp – Interactive webapp for vessel segmentation": "https://basile-rommes.com/bvs",
-    "🧬 Protein Superpositioning – Using Bayesian Inference to position protein structures over each other": "https://github.com/romba050/Protein_Superpositioning_using_Bayesian_Inference",
-    #"🩻 Computer Tomography – Jupyter Notebook on how to use Fourier Transform to calculate a CT": "https://nbviewer.org/github/romba050/computer_tomography/blob/master/ex3.ipynb",
-    "🎵 Spotle Assist Project – The smart assistant to the Spotle artist guessing game": "https://basile-rommes.com/spotle/", # "https://spotle.streamlit.app/",
-    "📊 NEAR Data Request Form – Plan your data application to conduct ageing research": "https://basile-rommes.com/near-data-request/", # "https://near-data-request.streamlit.app/",
-    "🍰 Swedish Cake Day – Find out which cake is celebrated today in Sweden, the country of pastries": "https://basile-rommes.com/cake/", # "https://whatcakeday.streamlit.app/",
-    "🤖 AI Art Turing Test – Test your ability to distinguish AI-generated images from human art": "https://basile-rommes.com/ai-art-quiz/",
+    "► Blood Vessel Segmentation (Master Thesis) – Leveraging Neural Networks and Probability Theory to find blood vessels": "https://github.com/romba050/MFN_RBV_segmentation",
+    "► Blood Vessel Segmentation Webapp – Interactive webapp for vessel segmentation": "https://basile-rommes.com/bvs",
+    "► Protein Superpositioning – Using Bayesian Inference to position protein structures over each other": "https://github.com/romba050/Protein_Superpositioning_using_Bayesian_Inference",
+    "► Convolutional Neural Network based Hand-Written Digit Recognizer": "https://basile-rommes.com/hand-written-digits",
+    #"► Computer Tomography – Jupyter Notebook on how to use Fourier Transform to calculate a CT": "https://nbviewer.org/github/romba050/computer_tomography/blob/master/ex3.ipynb",
+    "► Spotle Assist Project – The smart assistant to the Spotle artist guessing game": "https://basile-rommes.com/spotle/", # "https://spotle.streamlit.app/",
+    "► NEAR Data Request Form – Plan your data application to conduct ageing research": "https://basile-rommes.com/near-data-request/", # "https://near-data-request.streamlit.app/",
+    "► Swedish Cake Day – Find out which cake is celebrated today in Sweden, the country of pastries": "https://basile-rommes.com/cake/", # "https://whatcakeday.streamlit.app/",
+    "► AI Art Turing Test – Test your ability to distinguish AI-generated images from human art": "https://basile-rommes.com/ai-art-quiz/",
 }
 
 st.set_page_config(page_title=PAGE_TITLE, page_icon=PAGE_ICON)
@@ -118,11 +119,11 @@ st.markdown('<h3 style="color: #FFD700;">Skills</h3>', unsafe_allow_html=True)
 st.write("---")
 st.write(
     """
-👨🏻‍💻 Programming: Python (Scikit-learn, Pandas), R, Unix/Bash, C++, SQL, PHP\n
-📊 Data Visualisation: Matplotlib, Plotly, Streamlit\n
-🤖 Machine Learning: PyTorch, Keras\n
-📚 Modeling: Convolutional Neural Networks, Bayesian Maximum a posteriori estimation, logistic regression, linear regression, decision trees\n
-🗄️ Databases and Cloud: MySQL, MariaDB, AWS, Docker, InfluxDB, Grafana\n
+► Programming: Python (Scikit-learn, Pandas), R, Unix/Bash, C++, SQL, PHP\n
+► Data Visualisation: Matplotlib, Plotly, Streamlit\n
+► Machine Learning: PyTorch, Keras\n
+► Modeling: Convolutional Neural Networks, Bayesian Maximum a posteriori estimation, logistic regression, linear regression, decision trees\n
+► Databases and Cloud: MySQL, MariaDB, AWS, Docker, InfluxDB, Grafana\n
 """
 )
 # # DevOps: Git, CI/CD

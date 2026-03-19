@@ -26,6 +26,7 @@ streamlit==1.12.0
 Terminal
 ```
 # vanilla terminal
+conda activate digital-resume-template-streamlit-Basile
 streamlit run app.py
 ```
 

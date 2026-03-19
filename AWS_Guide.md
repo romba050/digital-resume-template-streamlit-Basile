@@ -1,5 +1,12 @@
 # AWS Guide
 
+## Hosting Setup Diagram
+![AWS_diagram](diagram/AWS_diagram_scale_3.png "Diagram of net traffic showing ALB, Docker Containers and AWS Services")
+Generated via mermaid diagram creator (mmdc):
+```bash
+mmdc -i "./AWS_diagram.mmd" -o "./AWS_diagram_scale_3.png" -s 3   
+```
+
 ## Basics
 
 [basile-rommes.com](http://basile-rommes.com)
@@ -21,11 +28,7 @@ EC2
 
 This should show you the amount of running instances: e.g. Instances (1)
 
-
-
 Select instance and click “connect” on the top right
-
-
 
 Important:
 
@@ -120,7 +123,7 @@ vim default.conf # or: nano default.conf
 ```bash
     location /NAME/ {
         rewrite ^/NAME(/.*)$ $1 break;
-        proxy_pass http://NAME:8506;
+        proxy_pass http://NAME:PORT;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -136,7 +139,7 @@ vim default.conf # or: nano default.conf
 Then:
 
 ```bash
-docker restart nginx # where nginx is the name of my nginx docker, you can check what your naem is with docker ps
+docker restart nginx # where nginx is the name of my nginx docker, you can check what your name is with docker ps
 ```
 
 
