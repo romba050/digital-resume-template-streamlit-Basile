@@ -1,0 +1,60 @@
+graph TD
+    %% External Traffic
+    Internet[Internet Traffic<br/>basile-rommes.com] --> |HTTPS<br/>Port 443| ALB
+
+    %% Application Load Balancer
+    ALB[Application Load Balancer<br/>3 Public IPs across AZs<br/>HTTP→HTTPS redirect<br/>SSL termination] --> |HTTP<br/>Port 80| nginx
+
+    %% EC2 Instance
+    subgraph "Compute — EC2 t3.micro · Linux · eu-north-1"
+        subgraph "Docker — compose-managed · restart: unless-stopped · shared bridge network"
+            nginx[nginx reverse proxy<br/>path-based routing<br/>config bind-mounted from repo]
+            landcover[landcover<br/>Sentinel-2 land-cover demo · static]
+            neardata[near-data-request<br/>Research data-request portal]
+            spotle[spotle<br/>Music guessing game]
+            cake[cake<br/>Date utility app]
+            quiz[ai-art-quiz<br/>AI-vs-human art Turing test]
+            bvs[bvs<br/>Retinal vessel segmentation · PyTorch]
+            digits[hand-written-digits<br/>Digit recognition · Flask + gunicorn]
+        end
+
+        dist[digital-resume<br/>static build, dist/<br/>bind-mounted read-only into nginx]
+
+        nginx --> |/| dist
+        nginx --> |/landcover/| landcover
+        nginx --> |/near-data-request/| neardata
+        nginx --> |/spotle/| spotle
+        nginx --> |/cake/| cake
+        nginx --> |/ai-art-quiz/| quiz
+        nginx --> |/bvs/| bvs
+        nginx --> |/hand-written-digits/| digits
+    end
+
+    %% Source of truth
+    Repo[GitHub: private infra repo<br/>docker-compose.yml + nginx config<br/>single source of truth,<br/>audited by honest-setup-test.sh]
+    Repo -. defines + redeploys .-> nginx
+
+    %% AWS Services
+    subgraph "AWS Services"
+        R53[Route 53<br/>DNS + health check on /]
+        ACM[AWS Certificate Manager<br/>SSL Certificate]
+        VPC[VPC<br/>3 Availability Zones<br/>eu-north-1a / 1b / 1c]
+        TG[Target Group<br/>Health checks on :80]
+    end
+
+    %% Connections
+    R53 -.-> ALB
+    ALB -.-> ACM
+    ALB -.-> TG
+    Internet -.-> R53
+
+    %% Styling
+    classDef aws fill:#FF9900,stroke:#333,stroke-width:2px,color:#000
+    classDef container fill:#0066CC,stroke:#333,stroke-width:1px,color:#fff
+    classDef static fill:#4a7c59,stroke:#333,stroke-width:1px,color:#fff
+    classDef infra fill:#6b5b95,stroke:#333,stroke-width:1px,color:#fff
+
+    class ALB,ACM,VPC,TG,R53 aws
+    class nginx,neardata,spotle,cake,quiz,bvs,digits,landcover container
+    class dist static
+    class Repo infra

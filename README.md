@@ -50,3 +50,28 @@ Got some thoughts or suggestions? Don't hesitate to reach out to me at contact@p
 https://www.youtube.com/watch?v=4SO3CUWPYf0
 pip install -r requirements.txt
 streamlit run app.py
+
+
+## Creating diagram
+
+./bash-profile
+```
+mermaid () {
+        if ! docker info > /dev/null 2>&1
+        then
+                echo "Docker daemon not running. Start it with:  open -a Docker" >&2
+                return 1
+        fi
+        docker run --rm -u "$(id -u):$(id -g)" -v "$PWD":/data minlag/mermaid-cli "$@"
+}
+```
+
+```
+mermaid -i AWS_diagram_public.mmd -o ./AWS_diagram_2026-08-03.svg    
+rsvg-convert -w 8000 WS_diagram_2026-08-03.svg -o AWS_diagram_2026-08-03.png
+```
+
+If needed install rsvg-convert via:
+```
+brew install librsvg
+```

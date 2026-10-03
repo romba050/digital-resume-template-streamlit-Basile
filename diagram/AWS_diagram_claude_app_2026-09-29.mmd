@@ -1,0 +1,51 @@
+graph TD
+    %% External Traffic
+    Internet[Internet Traffic<br/>basile-rommes.com] --> |HTTP/HTTPS<br/>Port 80/443| ALB
+
+    %% Application Load Balancer
+    ALB[Application Load Balancer<br/>basile-rommes-alb<br/>3 Public IPs across AZs<br/>HTTP→HTTPS redirect<br/>SSL termination] --> |HTTP<br/>Port 80| EC2
+
+    %% EC2 Instance
+    subgraph "EC2 Instance"
+        EC2[EC2 t3.micro<br/>Instance ID: i-0d228d16d3efe75e7<br/>1 Public IP<br/>172.31.37.139 private IP]
+        
+        %% nginx reverse proxy
+        nginx[nginx Reverse Proxy<br/>Port 80<br/>Path-based routing]
+        
+        %% Docker containers
+        subgraph "Docker Containers"
+            resume[digital-resume<br/>:8501<br/>basile-rommes.com/]
+            neardata[near-data-request<br/>:8502<br/>/near-data-request/]
+            spotle[spotle<br/>:8503<br/>/spotle/]
+            cake[cake<br/>:8504<br/>/cake/]
+            quiz[ai-art-quiz<br/>:8505<br/>/ai-art-quiz/]
+            bvs[bvs<br/>:8506<br/>/bvs/]
+        end
+        
+        EC2 --> nginx
+        nginx --> resume
+        nginx --> neardata
+        nginx --> spotle
+        nginx --> cake
+        nginx --> quiz
+        nginx --> bvs
+    end
+
+    %% AWS Services
+    subgraph "AWS Services"
+        ACM[AWS Certificate Manager<br/>SSL Certificate]
+        VPC[VPC<br/>3 Availability Zones<br/>eu-north-1a, eu-north-1b, eu-north-1c]
+        TG[Target Group<br/>basile-rommes-tg<br/>Health checks on :80]
+    end
+
+    %% Connections
+    ALB -.-> ACM
+    ALB -.-> TG
+    EC2 -.-> VPC
+
+    %% Styling
+    classDef aws fill:#FF9900,stroke:#333,stroke-width:2px,color:#000
+    classDef container fill:#0066CC,stroke:#333,stroke-width:1px,color:#fff
+    
+    class ALB,ACM,VPC,TG aws
+    class resume,neardata,spotle,cake,quiz,bvs container
